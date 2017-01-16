@@ -16,7 +16,7 @@ quote1re = re.compile('"')
 quote2re = re.compile("'")
 
 R_IMAGE_SIZE = 7            # in inches
-IPYTHON_IMAGE_SIZE = 800    # in pixels
+JUPYTER_IMAGE_SIZE = 800    # in pixels
 
 def esc(mystr):
     """Escape string so that it remains a string when converted to R"""
@@ -316,25 +316,26 @@ def ggsave(name, plot, data=None, *args, **kwargs):
     return prog
 
 
-def gg_ipython(plot, data, width=IPYTHON_IMAGE_SIZE, height=None,
+def ggnotebook(plot, data, width=JUPYTER_IMAGE_SIZE, height=None,
                *args, **kwargs):
-    """Render pygg in an IPython notebook
+    """Render pygg in an Jupyter notebook
 
     Allows one to say things like:
 
-    import pygg
-    p = pygg.ggplot('diamonds', pygg.aes(x='carat', y='price', color='clarity'))
-    p += pygg.geom_point(alpha=0.5, size = 2)
-    p += pygg.scale_x_log10(limits=[1, 2])
-    pygg.gg_ipython(p, data=None, quiet=True)
+    import *
 
-    directly in an IPython notebook and see the resulting ggplot2 image
-    displayed inline.  This function is print a warning if the IPython library
-    cannot be imported.  The ggplot2 image is rendered as a PNG and not
+    p = ggplot('diamonds', pygg.aes(x='carat', y='price', color='clarity'))
+    p += geom_point(alpha=0.5, size = 2)
+    p += scale_x_log10(limits=[1, 2])
+    ggnotebook(p, data=None, quiet=True)
+
+    Directly in an Jupyter notebook and see the resulting ggplot2 image
+    displayed inline.  This function will print a warning if the IPython.display library
+    cannot be imported. The ggplot2 image is rendered as a PNG and not
     as a vectorized graphics object right now.
 
-    Note that by default gg_ipython sets the output height and width to
-    IPYTHON_IMAGE_SIZE pixels as this is a reasonable default size for a
+    Note that by default gg_jupyter sets the output height and width to
+    JUPYTER_IMAGE_SIZE pixels as this is a reasonable default size for a
     browser-based notebook.  Height is by default None, indicating that height
     should be set to the same value as width.  It is possible to adjust
     the aspect ratio of the output by providing non-None values for both

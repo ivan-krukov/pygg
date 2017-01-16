@@ -6,4 +6,4 @@ for f in ggplot2_functions:
 
 from .pygg import *
 
-__all__ = ['esc', 'is_escaped', 'ggsave', 'facet_wrap', 'facet_grid'] + ggplot2_functions
+__all__ = ['esc', 'is_escaped', 'ggsave', 'facet_wrap', 'facet_grid', 'ggnotebook'] + ggplot2_functions
